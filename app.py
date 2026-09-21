@@ -5,11 +5,11 @@ import pandas as pd
 # 1. ตั้งค่าหน้าตาของเว็บ
 st.set_page_config(
     page_title="ระบบอัตราแลกเปลี่ยนเงินตรา", 
-    page_icon="🔱", 
+    page_icon="", 
     layout="centered"
 )
 
-st.title("🔱 ระบบแสดงอัตราแลกเปลี่ยนเงินตรา")
+st.title("ระบบแสดงอัตราแลกเปลี่ยนเงินตรา")
 st.write("แอปพลิเคชันแสดงอัตราแลกเปลี่ยนและคำนวณการแลกเปลี่ยนเงินตรา (API: ExchangeRate-API)")
 
 # API Key ของคุณ
@@ -31,7 +31,7 @@ def get_exchange_rates(base_currency):
 currencies = ["USD", "THB", "EUR", "JPY", "GBP", "AUD", "CAD", "CHF", "CNY", "SGD"]
 
 # 3. ส่วนคำนวณการแลกเปลี่ยนเงิน
-st.subheader("🧮 คำนวณการแลกเปลี่ยนเงิน")
+st.subheader("คำนวณการแลกเปลี่ยนเงิน")
 
 col1, col2, col3 = st.columns(3)
 
@@ -56,7 +56,7 @@ if data and data.get("result") == "success":
         st.info(f"อัตราแลกเปลี่ยน: 1 {from_curr} = {rate:,.4f} {to_curr}")
     
     # 4. แสดงตารางเปรียบเทียบอัตราแลกเปลี่ยน
-    st.subheader(f"📊 ตารางอัตราแลกเปลี่ยนอ้างอิงจาก 1 {from_curr}")
+    st.subheader(f"ตารางอัตราแลกเปลี่ยนอ้างอิงจาก 1 {from_curr}")
     df_rates = pd.DataFrame(list(rates.items()), columns=["สกุลเงิน", "อัตราแลกเปลี่ยน"])
     filtered_df = df_rates[df_rates["สกุลเงิน"].isin(currencies)].reset_index(drop=True)
     st.dataframe(filtered_df, use_container_width=True)
